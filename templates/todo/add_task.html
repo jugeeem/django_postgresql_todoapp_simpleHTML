@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <div class="container mx-auto">
+    <div class="container mx-auto mt-4 w-3/5 flex flex-col justify-center">
+      <div class="flex justify-center">
+        <h3>Add ToDo Task here!</h3>
+      </div>
+      <div class="w-full">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="add-task-label mt-4 mb-2">
+            <label for="director">director</label>
+            {{ form.director }}
+          </div>
+          <div class="add-task-label mt-4 mb-2">
+            <label for="title">title</label>
+            {{ form.title }}
+          </div>
+          <div class="flex flex-row-reverse">
+            <button type="submit" class="mt-4 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
