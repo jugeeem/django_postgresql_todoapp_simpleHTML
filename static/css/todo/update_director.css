@@ -1,0 +1,10 @@
+.update-task-label {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #333;
+}
+
+.update-task-label label {
+    display: block;
+    margin-bottom: 0.25rem;
+}

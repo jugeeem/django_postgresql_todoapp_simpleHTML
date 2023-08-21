@@ -7,10 +7,11 @@
     <title>Django - project -</title>
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block css %}{% endblock css %}
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body>
+  <body class="h-screen flex flex-col">
     <!-- header -->
     {% block header %}
       {% include 'snippets/header.html' %}

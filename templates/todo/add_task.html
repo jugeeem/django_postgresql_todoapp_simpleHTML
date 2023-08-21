@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/todo/add_task.css' %}">
+{% endblock %}
 
 {% block main %}
   <div class="container mx-auto">
@@ -9,13 +15,21 @@
       <div class="w-full">
         <form method="POST">
           {% csrf_token %}
-          <div class="add-task-label mt-4 mb-2">
-            <label for="director">director</label>
-            {{ form.director }}
+          <div class="update-task-label mt-4 mb-2">
+            <label for="director">Director</label>
+            {{ form.director|add_class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
           </div>
-          <div class="add-task-label mt-4 mb-2">
-            <label for="title">title</label>
-            {{ form.title }}
+          <div class="update-task-label mt-4 mb-2">
+            <label for="title">Title</label>
+            {{ form.title|add_class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
+          </div>
+          <div class="update-task-label mt-4 mb-2">
+            <label for="description">Description</label>
+            {{ form.description|add_class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
+          </div>
+          <div class="update-task-label mt-4 mb-2">
+            <label for="status">Status</label>
+            {{ form.status|add_class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
           </div>
           <div class="flex flex-row-reverse">
             <button type="submit" class="mt-4 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add</button>
