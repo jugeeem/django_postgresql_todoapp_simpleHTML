@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <div class="container mx-auto">
+    <h1 class="flex justify-center">Director List</h1>
+    {% if director_list %}
+      <div class="relative overflow-x-auto mt-4 shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">DIRECTOR TITLE</th>
+              <th scope="col" class="px-6 py-3">
+                <span class="sr-only">Edit</span>
+              </th>
+              <th scope="col" class="px-6 py-3">
+                <span class="sr-only">Delete</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for director in director_list %}
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ director.title }}</th>
+                <td class="px-6 py-4 text-right">
+                  <a href="{% url 'update_director' director.pk %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <a href="{% url 'delete_director' director.pk %}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p>No tasks have been added yet.</p>
+    {% endif %}
+  </div>
+  <div class="container w-full mt-4 mx-auto flex flex-row-reverse">
+    <a href="{% url 'add_director' %}" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add Director</a>
+    <a href="{% url 'add_task' %}" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add Task</a>
+    <a href="{% url 'show_tasklist' %}" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ToDo List</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="container mx-auto">
+        <div class="container mx-auto mt-4 w-3/5">
+            <div class="container mx-auto">
+                <h1 class="flex justify-center">ToDo List</h1>
+                {% if task %}
+                    <div class="w-full">
+                        <div class="update-task-label mt-4 mb-2">
+                            <label for="director">Director</label>
+                            <p class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ task.director }}</p>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="update-task-label mt-4 mb-2">
+                            <label for="title">Title</label>
+                            <p class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ task.title }}</p>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="update-task-label mt-4 mb-2">
+                            <label for="description">Description</label>
+                            <textarea cols="30" rows="10" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>{{ task.description }}</textarea>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="update-task-label mt-4 mb-2">
+                            <label for="status">Status</label>
+                            <p class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ task.status }}</p>                            
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="flex justify-center">
+                        <p>This task has no data.</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="container w-full mt-4 mx-auto flex flex-row-reverse">
+                <a href="{% url 'add_director' %}" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add Director</a>
+                <a href="{% url 'add_task' %}" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add Task</a>
+                <a href="{% url 'show_directorlist' %}" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Direcor List</a>
+                <a href="{% url 'show_directorlist' %}" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Task List</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

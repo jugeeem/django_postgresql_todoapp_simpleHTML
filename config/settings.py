@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'front.apps.FrontConfig',
     'todo.apps.TodoConfig',
+    'widget_tweaks', # formのclassを変更するために追加
 ]
 
 MIDDLEWARE = [
