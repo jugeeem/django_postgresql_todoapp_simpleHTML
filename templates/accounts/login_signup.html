@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <div class="container my-5 mx-auto">
+    <div class="flex justify-center">
+      <div class="w-3/5 mx-auto flex flex-col">
+        <div class="flex justify-center">
+          {% if 'login' in request.path %}
+            <h1>Log In</h1>
+            {% elif 'signup' in request.path %}
+            <h1>Sign Up</h1>
+          {% endif %}
+        </div>
+        <form method="POST" class="w-full bg-white shadow-md mb-4 flex justify-center py-4">
+          {% csrf_token %}
+          <div class="w-full flex justify-center flex-col max-w-xs">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+              <input name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="email">email</label>
+              <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="E-mail Address" required />
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+              <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" required />
+            </div>
+            <div class="flex items-center justify-between">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                {% if 'login' in request.path %}
+                  <p>Login In</p>
+                {% elif 'signup' in request.path %}
+                  <p>Sign In</p>
+                {% endif %}
+              </button>
+              <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
+            </div>
+          </div>
+        </form>
+        <div class="form-row"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

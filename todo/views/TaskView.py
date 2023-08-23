@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
+# login必須の関数viewにはこれを必ず一番先頭に継承する
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+# login必須のClassViewにはこれを必ず一番先頭に継承する
+from django.contrib.auth.decorators import login_required
 
 from ..models import *
 
@@ -20,7 +24,8 @@ class DirectorListView(ListView):
     model = Director
     template_name = 'todo/show_directorlist.html'
     context_object_name = 'director_list'
-    queryset = Director.objects.filter(delete_flag=False).order_by('-created_at')
+    queryset = Director.objects.filter(
+        delete_flag=False).order_by('-created_at')
 
 
 class TaskDetailView(DetailView):
@@ -34,7 +39,12 @@ class TaskCreateView(CreateView):
     """Create task"""
     model = Task
     template_name = 'todo/add_task.html'
-    fields = ['director', 'title', 'description', 'status']
+    fields = [
+        'director',
+        'title',
+        'description',
+        'status'
+    ]
     success_url = reverse_lazy('show_tasklist')
 
 
@@ -50,7 +60,12 @@ class UpdateTaskView(UpdateView):
     """Update task"""
     model = Task
     template_name = 'todo/update_task.html'
-    fields = ['title', 'description', 'director', 'status']
+    fields = [
+        'title',
+        'description',
+        'director',
+        'status'
+    ]
     success_url = reverse_lazy('show_tasklist')
 
 

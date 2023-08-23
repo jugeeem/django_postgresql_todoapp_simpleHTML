@@ -26,8 +26,8 @@ urlpatterns = [
     # ToDoアプリ
     path('todo/', include('todo.urls')),
 
-    # Redirect
-    path('', RedirectView.as_view(url='/index/')),
+    # ユーザー認証
+    path('', include('accounts.urls')),
 
     # 管理画面
     path('admin/', admin.site.urls),

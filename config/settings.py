@@ -47,9 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'front.apps.FrontConfig',
-    'todo.apps.TodoConfig',
-    'widget_tweaks', # formのclassを変更するために追加
+    'front.apps.FrontConfig',  # Home画面用
+    'todo.apps.TodoConfig',  # Todoアプリ用
+    'accounts.apps.AccountsConfig',  # アカウント用
+    'widget_tweaks',  # formのclassを変更するために追加
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,14 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# カスタムユーザモデル
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_URL = '/logout/'
+
+LOGOUT_REDIRECT_URL = '/login/'

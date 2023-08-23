@@ -13,11 +13,16 @@
       <a class="mr-5 hover:text-gray-900">Third Link</a>
       <a class="mr-5 hover:text-gray-900">Fourth Link</a>
     </nav>
-    <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-      Button<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-        <path d="M5 12h14M12 5l7 7-7 7"></path>
-      </svg>
-    </button>
+    <!-- 
+      ログイン状況によるボタンの出し分け 
+      - urlの指定は、urls.pyのnameを指定する
+    -->
+    {% if user.is_authenticated %}
+      <button class="w-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onclick="location.href='{% url 'logout' %}'">Logout</button>
+    {% else %}
+      <button class="w-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onclick="location.href='{% url 'login' %}'">login</button>
+      <button class="w-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onclick="location.href='{% url 'signup' %}'">SignUp</button>
+    {% endif %}
   </div>
 </header>
   
