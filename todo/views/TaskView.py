@@ -1,3 +1,5 @@
+import logging
+
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import (
@@ -9,6 +11,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
 from ..models import *
+
+
+logger = logging.getLogger(__name__)
 
 
 class ToDoListView(ListView):

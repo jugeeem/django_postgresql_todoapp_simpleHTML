@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from django.views.generic import (CreateView, UpdateView)
@@ -9,6 +11,8 @@ from django.urls import reverse_lazy
 from ..models import Profile
 from accounts.forms import UserCreationForm
 
+
+logger = logging.getLogger(__name__)
 
 class SignUpCreateView(CreateView):
     """Create signup"""
