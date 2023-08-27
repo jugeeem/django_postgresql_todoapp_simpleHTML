@@ -31,17 +31,10 @@ urlpatterns = [
     path('todo/', include('todo.urls')),
 
     # ユーザー認証
-    # path('accounts/', include('accounts.urls')),
-
-    path('login/', views.Login.as_view()),
-    path('logout/', LogoutView.as_view()),
-    path('signup/', views.SignUpView.as_view()),
-    path('account/', views.AccountUpdateView.as_view()),
-    path('profile/', views.ProfileUpdateView.as_view()),
-
+    path('accounts/', include('accounts.urls')),
 
     # リダイレクト
-    # path('', RedirectView.as_view(url='/index/')),
+    path('', RedirectView.as_view(url='/index/')),
 
     # 管理画面
     path('admin/', admin.site.urls),
