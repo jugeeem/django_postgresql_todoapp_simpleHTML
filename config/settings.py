@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+from django.urls import reverse_lazy
+
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,9 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'front.apps.FrontConfig',
-    'todo.apps.TodoConfig',
-    'widget_tweaks', # formのclassを変更するために追加
+    'front.apps.FrontConfig',  # Home画面用
+    'todo.apps.TodoConfig',  # Todoアプリ用
+    'accounts.apps.AccountsConfig',  # アカウント用
+    'widget_tweaks',  # formのclassを変更するために追加
 ]
 
 MIDDLEWARE = [
@@ -61,6 +66,39 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOG_BASE_DIR = BASE_DIR / 'logs'  # 追加
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {"simple": {"format": "%(asctime)s [%(levelname)s] %(message)s"}},
+    "handlers": {
+        "info": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOG_BASE_DIR, "info.log"),
+            "formatter": "simple",
+        },
+        "warning": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOG_BASE_DIR, "warning.log"),
+            "formatter": "simple",
+        },
+        "error": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOG_BASE_DIR, "error.log"),
+            "formatter": "simple",
+        },
+    },
+    "root": {
+        "handlers": ["info", "warning", "error"],
+        "level": "INFO",
+    },
+}
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -133,3 +171,19 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# カスタムユーザモデル
+AUTH_USER_MODEL = 'accounts.User'
+
+# ログイン後のリダイレクト先
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+
+# 未ログインユーザのリダイレクト先
+LOGIN_URL = reverse_lazy('login')
+
+# ログアウト後のリダイレクト先
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+# ログアウトのURL
+LOGOUT_URL = reverse_lazy('logout')
+
