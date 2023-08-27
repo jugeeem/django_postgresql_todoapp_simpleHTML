@@ -2,6 +2,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.utils.crypto import get_random_string
 
 
 class UserManager(BaseUserManager):
@@ -30,13 +31,12 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     username = models.CharField(
-        max_length=50, unique=True, blank=True, default='匿名')
+        max_length=50, unique=True, blank=True, null=True)
     email = models.EmailField(max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    delete_flag = models.BooleanField(default=False)
     objects = UserManager()
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
@@ -74,7 +74,6 @@ class Profile(models.Model):
     tel = models.CharField(default='', blank=True, max_length=15)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    delete_flag = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

@@ -1,75 +1,51 @@
-import logging
-
-from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse
-from django.views.generic import (CreateView, UpdateView)
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
-from django.urls import reverse_lazy
 
-from ..models import Profile
+from accounts.models import Profile
 from accounts.forms import UserCreationForm
 
 
-logger = logging.getLogger(__name__)
-
-class SignUpCreateView(CreateView):
-    """Create signup"""
+class SignUpView(CreateView):
     form_class = UserCreationForm
+    success_url = '/login/'
     template_name = 'accounts/login_signup.html'
-    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        """Security check complete. Log the user in."""
         return super().form_valid(form)
 
 
 class Login(LoginView):
-    """Show login form"""
     template_name = 'accounts/login_signup.html'
 
-    def form_valid(self, form: AuthenticationForm) -> HttpResponse:
-        """Security check complete. Log the user in."""
+    def form_valid(self, form):
         return super().form_valid(form)
 
-    def form_invalid(self, form: AuthenticationForm) -> HttpResponse:
-        """Security check complete. Log the user in."""
+    def form_invalid(self, form):
         return super().form_invalid(form)
 
 
-class AccountUpdateView(LoginRequiredMixin, UpdateView):
-    """Update account"""
+class AccountUpdateView(UpdateView):
     model = get_user_model()
     template_name = 'accounts/account.html'
-    fields = [
-        'username',
-        'email'
-    ]
-    success_url = reverse_lazy('account')
+    fields = ('username', 'email',)
+    success_url = '/index/'
 
     def get_object(self):
-        """Return the user record."""
+        # URL変数ではなく、現在のユーザーから直接pkを取得
         self.kwargs['pk'] = self.request.user.pk
         return super().get_object()
 
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    """Update profile"""
+class ProfileUpdateView(UpdateView):
     model = Profile
     template_name = 'accounts/profile.html'
-    fields = [
-        'name',
-        'zipcode',
-        'prefecture',
-        'city',
-        'address1',
-        'address2',
-        'tel'
-    ]
-    success_url = reverse_lazy('profile')
+    fields = ('name', 'zipcode', 'prefecture',
+              'city', 'address1', 'address2', 'tel')
+    success_url = '/profile/'
 
     def get_object(self):
-        """Return the user record."""
-        self.kwargs['pk'] = self.request.user.user.pk
+        # URL変数ではなく、現在のユーザーから直接pkを取得
+        self.kwargs['pk'] = self.request.user.pk
         return super().get_object()
