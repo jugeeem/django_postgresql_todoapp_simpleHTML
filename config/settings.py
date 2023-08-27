@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+from django.urls import reverse_lazy
+
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -173,10 +175,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # カスタムユーザモデル
 AUTH_USER_MODEL = 'accounts.User'
 
-LOGIN_URL = '/login/'
+# ログイン後のリダイレクト先
+LOGIN_REDIRECT_URL = reverse_lazy('index')
 
-LOGIN_REDIRECT_URL = '/'
+# 未ログインユーザのリダイレクト先
+LOGIN_URL = reverse_lazy('login')
 
-LOGOUT_URL = '/logout/'
+# ログアウト後のリダイレクト先
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
-LOGOUT_REDIRECT_URL = '/login/'
+# ログアウトのURL
+LOGOUT_URL = reverse_lazy('logout')
+

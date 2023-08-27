@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from django.contrib.auth.views import LogoutView
+
+from accounts import views
+
 
 
 urlpatterns = [
@@ -27,7 +31,10 @@ urlpatterns = [
     path('todo/', include('todo.urls')),
 
     # ユーザー認証
-    path('', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
+
+    # リダイレクト
+    path('', RedirectView.as_view(url='/index/')),
 
     # 管理画面
     path('admin/', admin.site.urls),

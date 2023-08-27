@@ -1,7 +1,5 @@
 import logging
 
-from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
 # login必須の関数viewにはこれを必ず一番先頭に継承する
@@ -16,7 +14,7 @@ from ..models import *
 logger = logging.getLogger(__name__)
 
 
-class ToDoListView(ListView):
+class ToDoListView(LoginRequiredMixin, ListView):
     """Show tasklist"""
     model = Task
     template_name = 'todo/show_tasklist.html'
@@ -24,7 +22,7 @@ class ToDoListView(ListView):
     queryset = Task.objects.filter(delete_flag=False).order_by('-created_at')
 
 
-class DirectorListView(ListView):
+class DirectorListView(LoginRequiredMixin, ListView):
     """Show directorlist"""
     model = Director
     template_name = 'todo/show_directorlist.html'
@@ -33,14 +31,14 @@ class DirectorListView(ListView):
         delete_flag=False).order_by('-created_at')
 
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     """Show task detail"""
     model = Task
     template_name = "todo/show_taskdetail.html"
     context_object_name = 'task'
 
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     """Create task"""
     model = Task
     template_name = 'todo/add_task.html'
@@ -53,7 +51,7 @@ class TaskCreateView(CreateView):
     success_url = reverse_lazy('show_tasklist')
 
 
-class DirectorCreateView(CreateView):
+class DirectorCreateView(LoginRequiredMixin, CreateView):
     """Create director"""
     model = Director
     template_name = 'todo/add_director.html'
@@ -61,7 +59,7 @@ class DirectorCreateView(CreateView):
     success_url = reverse_lazy('show_directorlist')
 
 
-class UpdateTaskView(UpdateView):
+class UpdateTaskView(LoginRequiredMixin, UpdateView):
     """Update task"""
     model = Task
     template_name = 'todo/update_task.html'
@@ -74,7 +72,7 @@ class UpdateTaskView(UpdateView):
     success_url = reverse_lazy('show_tasklist')
 
 
-class UpdateDirectorView(UpdateView):
+class UpdateDirectorView(LoginRequiredMixin, UpdateView):
     """Update director"""
     model = Director
     template_name = 'todo/update_director.html'
@@ -82,7 +80,7 @@ class UpdateDirectorView(UpdateView):
     success_url = reverse_lazy('show_directorlist')
 
 
-class DeleteTaskView(UpdateView):
+class DeleteTaskView(LoginRequiredMixin, UpdateView):
     """SoftDelete task"""
     model = Task
     template_name = 'todo/delete_task.html'
@@ -90,7 +88,7 @@ class DeleteTaskView(UpdateView):
     success_url = reverse_lazy('show_tasklist')
 
 
-class DeleteDirectorView(UpdateView):
+class DeleteDirectorView(LoginRequiredMixin, UpdateView):
     """SoftDelete director"""
     model = Director
     template_name = 'todo/delete_director.html'

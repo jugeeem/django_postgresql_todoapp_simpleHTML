@@ -1,45 +1,43 @@
 {% extends 'base.html' %}
 
 {% block main %}
-  <div class="container my-5 mx-auto">
-    <div class="flex justify-center">
-      <div class="w-3/5 mx-auto flex flex-col">
+    <div class="container mx-auto">
+      <div class="container mx-auto mt-4 w-3/5 flex flex-col justify-center">
         <div class="flex justify-center">
-          {% if 'login' in request.path %}
-            <h1>Log In</h1>
+          <h1>
+            {% if 'login' in request.path %}
+              Login
             {% elif 'signup' in request.path %}
-            <h1>Sign Up</h1>
-          {% endif %}
+              Signup
+            {% endif %}
+          </h1>
         </div>
-        <form method="POST" class="w-full bg-white shadow-md mb-4 flex justify-center py-4">
-          {% csrf_token %}
-          <div class="w-full flex justify-center flex-col max-w-xs">
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
-              <input name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="email">email</label>
-              <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="E-mail Address" required />
-            </div>
-            <div class="mb-6">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-              <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" required />
-            </div>
-            <div class="flex items-center justify-between">
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                {% if 'login' in request.path %}
-                  <p>Login In</p>
-                {% elif 'signup' in request.path %}
-                  <p>Sign In</p>
-                {% endif %}
-              </button>
-              <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
-            </div>
-          </div>
-        </form>
-        <div class="form-row"></div>
+        <div class="w-full">
+          <form method="POST">
+            {% csrf_token %}
+              <div class="mt-4 mb-2">
+                <label for="username"></label>
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="username" placeholder="Username" />
+              </div>
+              <div class="mt-4 mb-2">
+                <label for="email"></label>
+                <input type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="email" placeholder="Email" required />
+              </div>
+              <div class="mt-4 mb-2">
+                <label for="password"></label>
+                <input type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="password" placeholder="Password" required />
+              </div>
+              <div class="flex flex-row-reverse">
+                <button class="mt-4 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit">
+                  {% if 'login' in request.path %}
+                    Login
+                  {% elif 'signup' in request.path %}
+                    Signup
+                  {% endif %}
+                </button>
+              </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 {% endblock %}
