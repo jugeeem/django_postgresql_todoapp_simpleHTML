@@ -71,3 +71,78 @@ inputタグやbuttonタグのデザインのベースとして使用させて頂
 あらためまして、ありがとうございました。
 
 2023年8月27日 南 龍太郎
+
+
+# TodoList app [ Django + Postgresql + TailwindCSS ]   
+
+## Overview  
+### 1. about this app
+- This is a TodoList app created with Django + Postgresql + TailwindCSS.
+- It has user registration, login, logout, and CRUD functionality for Todo.
+- It is responsive using TailwindCSS.
+- Also, TailwindCSS uses CDN and is not suitable for deployment.
+
+### 2. Purpose of Creation
+I started learning Python in June 2023 and passed the "Python 3 Engineer Certification Basic Exam" on August 5 of the same year.  
+I wanted to put what I learned into some form, so I created a TodoList application in Django.
+
+I created the ToDoList app with Django for the following two reasons
+- To learn the basics of Django
+    - CRUD processing, user authentication, templates, static file handling, etc.
+- To learn both front-end and back-end in order to become a full-stack engineer.
+
+### 3. Technologies used
+- Python 3.11.4
+- Django 4.2.4
+- Postgresql 14.8
+- TailwindCSS 3.3.3
+
+### 4. impressions  
+#### 4-1. Learning Django
+In the past, when I was a beginning programmer, I had learned PHP, and the only frameworks I had used were Laravel and FuelPHP. Both of them use the MVC model, and Django's MTV model was new to me. In that respect, learning Django was very refreshing. On the other hand, it took me a while to understand the MTV model. Also, the official Django documentation was very comprehensive and very useful for learning. However, there are many parts of the official Django documentation that are not yet in Japanese, so understanding English was necessary. In the future, I would like to make it a habit to read English documents to improve my English comprehension.
+
+#### 4-2. About form manipulation
+To be honest, I cannot say that I still have a good understanding of this area. There is a difference between the way forms under `templates/todo` are displayed and the way forms under `templates/accounts` are displayed. This is mainly due to my lack of understanding of the form function. I would like to deepen my understanding of form functions in the future.
+
+#### 4-3. About the front end
+For the front end, we used TailwindCSS. we chose TailwindCSS because we thought it offered more flexibility compared to Bootstrap, a CSS framework. Also, TailwindCSS uses a CDN and is not suitable for deployment. In the future, we would like to use TailwindCSS in a way that does not use a CDN.
+
+### 5. future issues
+#### 5-1. Understanding Form Manipulation
+The first thing we need to give you is form manipulation in Django, as mentioned above.
+
+#### 5-2. Template layer changes
+Our current templates are built using TailwindCSS, but we would like to switch to NextJS for template processing. The reason is that we would like to separate the front end from the back end by using NextJS. Also, NextJS is a React framework, and we would like to deepen our understanding of the front end by learning React. Another reason that can be mentioned is that NextJS supports both SSG and SSR, and we believe that this will help with SEO.
+
+### 6. References.
+
+- [official Django documentation](https://docs.djangoproject.com/ja/4.0/)
+
+- [udemy - [Intermediate level, Django4 compatible] EC Site Development with Python/Django (also compatible with Django 3.2 series)](https://www.udemy.com/course/django-ecweb-vegeket/)
+
+- [udemy - Introduction to Python 3 + Applications taught by a working Silicon Valley engineer + Silicon Valley style of coding in the US](https://www.udemy.com/course/python-beginner/)
+
+- [delhi09's Study Diary - I learned about setting up LOGGING in Django properly -](https://kamatimaru.hatenablog.com/entry/2020/12/14/020610)
+
+- [Introduction to Python - How to set CSS classes in Django forms -](https://python.keicode.com/django/form-add-class.php)
+
+- [Engineer University - Using PostgreSQL with Django's Database -](https://uha-blog.com/python/django-postgresql/)
+
+- [Tailwind CSS - Documentation](https://tailwindcss.com/docs)
+
+- [TAILBLOCKS](https://tailblocks.cc/)  
+This one was used as the basis for the design of the ToDoList application.
+
+- [Tailwind CSS CDN](https://www.jsdelivr.com/package/npm/tailwindcss)
+
+- [Flowbite](https://flowbite.com/)  
+We used this as a base for the design of input and button tags.
+
+
+### 7. Acknowledgements
+Through the creation of this simple ToDoList application, I have referred to the articles and documents by various people as listed above. I would like to take this opportunity to thank you again. Thank you very much.  
+Although I am still a novice engineer, I would like to devote myself every day to making my experience useful to others, in whatever way I can.
+
+Again, thank you very much.
+
+Ryutaro Minami, August 27, 2023
