@@ -8,7 +8,7 @@
 - また、TailwindCSSはCDNを使用しており、デプロイに向きません。
 
 ### 2. 作成した目的
-2023年6月よりPythonの学習を開始し、同年8月5日に"Python 3 エンジニア認定基礎試験"に合格しました。  
+"Python 3 エンジニア認定基礎試験"に合格しました。  
 学習した内容を何か形にしたいと考え、DjangoでTodoListアプリを作成しました。
 
 Djangoを使ってToDoListアプリを作成した意図としては、以下の2点です。
@@ -70,7 +70,7 @@ inputタグやbuttonタグのデザインのベースとして使用させて頂
 
 あらためまして、ありがとうございました。
 
-2023年8月27日 南 龍太郎
+
 
 
 # TodoList app [ Django + Postgresql + TailwindCSS ]   
@@ -83,9 +83,6 @@ inputタグやbuttonタグのデザインのベースとして使用させて頂
 - Also, TailwindCSS uses CDN and is not suitable for deployment.
 
 ### 2. Purpose of Creation
-I started learning Python in June 2023 and passed the "Python 3 Engineer Certification Basic Exam" on August 5 of the same year.  
-I wanted to put what I learned into some form, so I created a TodoList application in Django.
-
 I created the ToDoList app with Django for the following two reasons
 - To learn the basics of Django
     - CRUD processing, user authentication, templates, static file handling, etc.
@@ -144,5 +141,3 @@ Through the creation of this simple ToDoList application, I have referred to the
 Although I am still a novice engineer, I would like to devote myself every day to making my experience useful to others, in whatever way I can.
 
 Again, thank you very much.
-
-Ryutaro Minami, August 27, 2023
